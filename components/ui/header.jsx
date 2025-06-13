@@ -1,8 +1,24 @@
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
-export default function Header() {
+const Header = () => {
   return (
-    <header className="bg-blue-100 p-4 text-center text-xl font-semibold">
-      Welcome to Welth
-    </header>
+    <div className="p-4 flex justify-end items-center gap-4 bg-gray-100 shadow">
+      <SignedOut>
+        <SignInButton />
+        <SignUpButton />
+      </SignedOut>
+
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </div>
   );
-}
+};
+
+export default Header;
