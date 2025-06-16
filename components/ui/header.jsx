@@ -2,17 +2,23 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
-  SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
-import { Link } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
+import Image from "next/image";
+import  Link  from "next/link";
+import { Button } from "../../components/ui/button"; // adjust path
+
+
+
+
 
 const Header = () => {
   return (
-    <div className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 bborder-b">
+    <div className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
     <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
       <Link href = "/">
-      <Image  src={"/logo.png"} 
+      <Image src={"/logo.png"} 
       alt="welth logo" 
       height={60} 
       width={200}
@@ -21,15 +27,28 @@ const Header = () => {
       
       </Link>
 
+
+      <div>
+          <SignedIn>
+            <Link href={"/dashboard"}> 
+              <Button variant ="outline">
+                <LayoutDashboard size={18} />
+                <span className="hidden md:inline">Dashboard</span>
+              </Button>
+            </Link>
+          </SignedIn>
+      
       <SignedOut>
-        <SignInButton />
         
+        <SignInButton forceRedirectUrl="/dashboard" >
+        <Button variant ="outline ">Login</Button>
+        </SignInButton >
       </SignedOut>
 
       <SignedIn>
         <UserButton />
       </SignedIn>
-  
+        </div>
       </nav>
     </div>
   );
