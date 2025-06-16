@@ -5,18 +5,32 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { Link } from "lucide-react";
 
 const Header = () => {
   return (
-    <div className="p-4 flex justify-end items-center gap-4 bg-gray-100 shadow">
+    <div className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 bborder-b">
+    <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <Link href = "/">
+      <Image  src={"/logo.png"} 
+      alt="welth logo" 
+      height={60} 
+      width={200}
+      className = "h-12 w-auto object-contain"
+      />
+      
+      </Link>
+
       <SignedOut>
         <SignInButton />
-        <SignUpButton />
+        
       </SignedOut>
 
       <SignedIn>
         <UserButton />
       </SignedIn>
+  
+      </nav>
     </div>
   );
 };
